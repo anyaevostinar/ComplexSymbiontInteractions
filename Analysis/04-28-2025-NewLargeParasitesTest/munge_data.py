@@ -1,12 +1,12 @@
 import os.path
 import gzip
 
-folder = '../../Data/04-21-2025-parasites-Demo/'
+folder = '../../Data/04-28-2025-NewLargeParasitesTest/'
 
 treatment_postfixes = ["MOI0.0", "MOI1.0"]
 partners = ["Host", "Sym"]
 tasks = ["NOT", "NAND", "AND", "ORN", "OR", "ANDN", "NOR", "XOR", "EQU"]
-reps = range(1,30)
+reps = range(1,15)
 header = "uid treatment rep update task count partner\n"
 
 outputFileName = "munged_basic.dat"
