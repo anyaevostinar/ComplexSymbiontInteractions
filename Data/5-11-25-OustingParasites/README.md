@@ -1,0 +1,1 @@
+Collecting data for presence or absenece of parasites with ousting activated.
