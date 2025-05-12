@@ -1,0 +1,100 @@
+    nop-0       
+    nop-0       
+    nop-0       
+    decrement   r0
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    subtract    r0, r0, r0
+    nop-0       
+    shiftright  r0
+    nop-0       
+    shiftleft   r0
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    shiftleft   r0
+    subtract    r0, r0, r0
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    shiftleft   r0
+    nop-0       
+    nop-0       
+    nop-0       
+    shiftleft   r0
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+AA:
+    nop-0       
+    nop-0       
+    decrement   r0
+    shiftleft   r0
+    shiftleft   r0
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    shiftright  r0
+    nop-0       
+    nand        r0, r0, r0
+    nop-0       
+    shiftright  r0
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    reproduce   
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    shiftleft   r0
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    subtract    r0, r0, r4
+AA:
+    nand        r0, r0, r4
+    sharedio    r0
+AC:

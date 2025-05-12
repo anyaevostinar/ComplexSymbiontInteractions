@@ -1,0 +1,100 @@
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    shiftright  r0
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    subtract    r0, r0, r0
+    nop-0       
+    nop-0       
+    nop-0       
+    subtract    r0, r0, r4
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    shiftleft   r0
+    nop-0       
+    nop-0       
+    swapstack   
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    shiftright  r0
+    nop-0       
+    nop-0       
+    nop-0       
+    shiftleft   r0
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    decrement   r0
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+AA:
+    shiftleft   r0
+    nop-0       
+    decrement   r0
+    shiftleft   r4
+    shiftright  r0
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    decrement   r0
+    nop-0       
+    decrement   r0
+    nop-0       
+    nop-0       
+AB:
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    decrement   r0
+    nop-0       
+    shiftleft   r0
+    nop-0       
+AC:
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    decrement   r0
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    shiftright  r0
+    shiftleft   r0
+    add         r0, r0, r0
+    reproduce   

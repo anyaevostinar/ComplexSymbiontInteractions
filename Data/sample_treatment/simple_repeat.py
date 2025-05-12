@@ -6,7 +6,7 @@
 import subprocess
 import sys
 
-verts = [0.0, 1.0]
+start_moi = [0.0, 1.0]
 
 def cmd(command):
     '''This wait causes all executions to run in sieries.                          
@@ -20,8 +20,8 @@ def silent_cmd(command):
     R script calls unitl all neccesary data is created.'''
     return subprocess.Popen(command, shell=True, stdout=subprocess.PIPE).wait()
 
-start_range = 21
-end_range = 25
+start_range = 10
+end_range = 20
 
 #collect optional command line arguments
 if(len(sys.argv) > 1):
@@ -43,9 +43,9 @@ seeds = range(start_range, end_range)
 print("Using seeds", start_range, "through", end_range-1)
 
 for a in seeds:
-    for b in verts:
-        command_str = './symbulation_default -SEED '+str(a)+ ' -VERTICAL_TRANSMISSION ' +str(b)+ ' -FILE_NAME _VT'+str(b)
-        settings_filename = "Output_VT"+str(b)+"_SEED"+str(a)+".data"
+    for b in start_moi:
+        command_str = './symbulation_sgp -SEED '+str(a)+ ' -START_MOI ' +str(b)+ ' -FILE_NAME _MOI'+str(b)
+        settings_filename = "Output_MOI"+str(b)+"_SEED"+str(a)+".data"
 
         print(command_str)
         cmd(command_str+" > "+settings_filename)

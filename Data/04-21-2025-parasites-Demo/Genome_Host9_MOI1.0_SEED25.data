@@ -1,0 +1,100 @@
+    nop-0       
+    nop-0       
+    nop-0       
+    shiftleft   r0
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    shiftright  r0
+    nop-0       
+    shiftleft   r1
+    shiftleft   r0
+    shiftleft   r0
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    shiftright  r0
+    nop-0       
+    nop-0       
+    shiftright  r0
+    nop-0       
+    nop-0       
+    decrement   r0
+    nop-0       
+    decrement   r0
+    nop-0       
+    nop-0       
+    nop-0       
+AA:
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+AB:
+    nop-0       
+    nop-0       
+    nop-0       
+AA:
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    shiftright  r2
+    nop-0       
+    nop-0       
+    decrement   r0
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    shiftleft   r0
+    sharedio    r0
+    shiftright  r0
+    push        r0
+    nop-0       
+AA:
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    increment   r0
+    subtract    r0, r0, r0
+    nop-0       
+    shiftright  r1
+AE:
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    decrement   r0
+    nop-0       
+    nop-0       
+    nop-0       
+    nop-0       
+    sharedio    r0
+    pop         r0
+    jumpifneq   r0, r0, AA
+    sharedio    r0

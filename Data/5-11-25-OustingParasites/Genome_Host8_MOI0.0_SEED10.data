@@ -1,0 +1,100 @@
+    nop-0       
+    jumpifneq   r6, r2, BW
+AA:
+AB:
+    decrement   r6
+AC:
+    nop-0       
+    shiftright  r6
+AD:
+AE:
+    push        r0
+AF:
+    jumpifneq   r0, r6, AI
+    nop-0       
+AG:
+    subtract    r6, r6, r7
+    add         r3, r3, r0
+AH:
+AI:
+AJ:
+AK:
+AL:
+AM:
+AN:
+    swap        r6, r5
+    swap        r4, r4
+    shiftright  r2
+    pop         r5
+AO:
+    reproduce   
+AP:
+AQ:
+    shiftleft   r0
+AR:
+    nand        r1, r6, r6
+    swapstack   
+    reproduce   
+    swap        r0, r1
+AS:
+    pop         r3
+    sharedio    r5
+AT:
+AU:
+    reproduce   
+AV:
+    decrement   r1
+AW:
+AX:
+AY:
+AZ:
+    nand        r4, r4, r1
+    subtract    r0, r4, r3
+    nop-0       
+BA:
+BB:
+    pop         r5
+    nand        r6, r4, r6
+BC:
+BD:
+BE:
+    nop-0       
+    decrement   r3
+    subtract    r4, r0, r3
+BF:
+BG:
+    nand        r1, r4, r6
+    nop-0       
+    increment   r5
+BH:
+    shiftleft   r4
+    subtract    r1, r2, r2
+    decrement   r5
+    nop-0       
+BI:
+    jumpifless  r0, r6, AZ
+    subtract    r0, r7, r2
+    nop-0       
+BJ:
+BK:
+BL:
+BM:
+    push        r2
+BN:
+BO:
+BP:
+BQ:
+BR:
+    jumpifless  r4, r6, AX
+    increment   r4
+    nop-0       
+    nand        r7, r4, r1
+BS:
+    pop         r1
+BT:
+BU:
+BV:
+BW:
+    nand        r0, r0, r0
+    sharedio    r0
+    reproduce   
