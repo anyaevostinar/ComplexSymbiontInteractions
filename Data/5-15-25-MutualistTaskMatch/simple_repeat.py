@@ -44,7 +44,7 @@ print("Using seeds", start_range, "through", end_range-1)
 
 for a in seeds:
     for b in start_match:
-        command_str = './symbulation_sgp -SEED '+str(a)+ ' -TRACK_PARENT_TASKS' +str(b)+ ' -FILE_NAME _TRACK'+str(b)
+        command_str = './symbulation_sgp -SEED '+str(a)+ ' -VT_TASK_MATCH ' +str(b)+ ' -FILE_NAME _TRACK'+str(b)
         settings_filename = "Output_TRACK"+str(b)+"_SEED"+str(a)+".data"
 
         print(command_str)
