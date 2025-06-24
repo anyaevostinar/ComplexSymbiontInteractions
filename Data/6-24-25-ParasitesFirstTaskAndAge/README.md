@@ -1,0 +1,1 @@
+Parasites experiment with functionality for giving credit to only the first task done enabled. Max age for ogranisms is also capped at 1500
