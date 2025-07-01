@@ -1,0 +1,1 @@
+Experiment testing how the fix for parent tasks effects the experiment with both Only First Task Credit ON and OFF. 

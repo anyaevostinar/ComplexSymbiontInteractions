@@ -1,0 +1,1 @@
+Parasites experiment with first task credit on and CPU steal chance at 50%

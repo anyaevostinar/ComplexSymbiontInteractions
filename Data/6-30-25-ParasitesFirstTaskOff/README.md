@@ -1,0 +1,1 @@
+Parasites experiment with first task credit off and CPU steal chance at 80%. This is to compare how different the parasites would react at different transfer rates
