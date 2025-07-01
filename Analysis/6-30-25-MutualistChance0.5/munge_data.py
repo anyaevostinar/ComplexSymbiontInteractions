@@ -1,7 +1,7 @@
 import os.path
 import gzip
 
-folder = '../../Data/6-27-25MutualistLoweredRepro/'
+folder = '../../Data/6-30-25-MutualistChance0.5/'
 
 treatment_postfixes = ["MOI0.0", "MOI1.0"]
 partners = ["Host", "Sym"]

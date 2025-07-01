@@ -1,7 +1,7 @@
 import os.path
 import gzip
 
-folder = '../../Data/6-27-25MutualistLoweredRepro/'
+folder = '../../Data/6-30-25-MutalistOnlyFirstCredOff/'
 
 treatment_postfixes = ["MOI0.0", "MOI1.0"]
 partners = ["Host", "Sym"]
@@ -26,7 +26,7 @@ for t in treatment_postfixes:
                     task = tasks[(task_i-1)//2]
                     host_outstring = "{} {} {} {} {} {} {}\n".format(uid, t, r, splitline[0], task, splitline[task_i], "Host")
                     outFile.write(host_outstring)
-                    sym_outstring = "{} {} {} {} {} {} {}\n".format(uid, t, r, splitline[0], task, splitline[task_i+1], "Parasite")
+                    sym_outstring = "{} {} {} {} {} {} {}\n".format(uid, t, r, splitline[0], task, splitline[task_i+1], "Mutualist")
                     outFile.write(sym_outstring)
         curFile.close()
 outFile.close()
