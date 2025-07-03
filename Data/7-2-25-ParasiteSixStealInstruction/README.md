@@ -1,0 +1,1 @@
+Parasites experiment using the new steal instruction compares to the previous version. This experiment uses a make of symbulation_sgp from a fork of the SymbulationEmp branch Complex-Syms_clean: https://github.com/EliasH-E/SymbulationEmp/commit/7d355b99c48aa71bf52ee9374723889c7257f3db. In this version stealing steals 6 updates
