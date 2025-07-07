@@ -1,0 +1,1 @@
+A large sweep of chances and amounts to see what variables both allow the parasites to pressure the hosts but for the parasites not to fully stop all the hosts. An attempt to find the balance. Second Variant with looping chances. 
