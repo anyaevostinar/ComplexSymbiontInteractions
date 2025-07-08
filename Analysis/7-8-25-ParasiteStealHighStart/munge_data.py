@@ -1,7 +1,7 @@
 import os.path
 import gzip
 
-folder = '../../Data/7-8-25-InstParasiteLargeStartSteal/'
+folder = '../../Data/7-7-25-StealInstructionNoDebt/'
 
 treatment_postfixes = ["DONATION_STEAL_INST0", "DONATION_STEAL_INST1"]
 partners = ["Host", "Sym"]
@@ -26,7 +26,7 @@ for t in treatment_postfixes:
                     task = tasks[(task_i-1)//2]
                     host_outstring = "{} {} {} {} {} {} {}\n".format(uid, t, r, splitline[0], task, splitline[task_i], "Host")
                     outFile.write(host_outstring)
-                    sym_outstring = "{} {} {} {} {} {} {}\n".format(uid, t, r, splitline[0], task, splitline[task_i+1], "Parasite")
+                    sym_outstring = "{} {} {} {} {} {} {}\n".format(uid, t, r, splitline[0], task, splitline[task_i+1], "Mutualist")
                     outFile.write(sym_outstring)
         curFile.close()
 outFile.close()
