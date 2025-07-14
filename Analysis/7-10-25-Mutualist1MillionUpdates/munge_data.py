@@ -18,8 +18,9 @@ for t in treatment_postfixes:
     for r in reps:
         fname = folder +"Tasks_" + t +"_SEED" + str(r)+ ".data"
         uid = t + "_" + str(r)
-        if(os.path.isfile(fname) == false):
+        if(os.path.isfile(fname) == False):
             continue
+
         curFile = open(fname, 'r')
         for line in curFile:
             if (line[0] != "u"):
