@@ -1,7 +1,7 @@
 import os.path
 import gzip
 
-folder = '../../Data/7-7-25-StealInstructionNoDebt/'
+folder = '../../Data/7-8-25-ParasiteStealHighStart/'
 
 treatment_postfixes = ["DONATION_STEAL_INST0", "DONATION_STEAL_INST1"]
 partners = ["Host", "Sym"]
