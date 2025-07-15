@@ -1,0 +1,634 @@
+### MAIN ###
+# Global Settings
+
+set SEED 1                        # What value should the random seed be? If seed <= 0, then it is randomly re-chosen.
+set DATA_INT 1000                 # How frequently, in updates, should data print?
+set SYNERGY 5                     # Amount symbiont's returned resources should be multiplied by
+set VERTICAL_TRANSMISSION 0       # Value 0 to 1 of probability of symbiont vertically transmitting when host reproduces
+set HOST_INT -2                   # Interaction value from -1 to 1 that hosts should have initially, -2 for random
+set SYM_INT -2                    # Interaction value from -1 to 1 that symbionts should have initially, -2 for random
+set GRID_X 100                    # Width of the world, just multiplied by the height to get total size
+set GRID_Y 100                    # Height of world, just multiplied by width to get total size
+set POP_SIZE -1                   # Starting size of the host population, -1 for full starting population
+set SYM_LIMIT 1                   # Number of symbiont allowed to infect a single host
+set START_MOI 0                   # Ratio of symbionts to hosts that experiment should start with
+set UPDATES 1000002               # Number of updates to run before quitting
+set RES_DISTRIBUTE 100            # Number of resources to give to each host each update if they are available
+set LIMITED_RES_TOTAL 10          # Starting number of total resources available over the entire run, -1 for unlimited
+set LIMITED_RES_INFLOW 500        # Number of resources to add to the total every update, only used if LIMITED_RES_TOTAL is not -1
+set HORIZ_TRANS 1                 # Should non-lytic horizontal transmission occur? 0 for no, 1 for yes
+set HOST_REPRO_RES 10             # How many resources required for host reproduction
+set SYM_HORIZ_TRANS_RES 0         # How many resources required for symbiont non-lytic horizontal transmission
+set SYM_VERT_TRANS_RES 0          # How many resources required for symbiont vertical transmission
+set GRID 0                        # Do offspring get placed immediately next to parents on grid, same for symbiont spreading
+set SYM_INFECTION_CHANCE 1        # The chance (between 0 and 1) that a sym will infect a parallel host on process
+set SYM_INFECTION_FAILURE_RATE 0  # The chance (between 0 and 1) that a sym will be killed by the world while trying to infect a host
+set HOST_AGE_MAX 500              # The maximum number of updates hosts are allowed to live, -1 for infinite
+set SYM_AGE_MAX -1                # The maximum updates symbionts are allowed to live, -1 for infinite
+set PHYLOGENY 0                   # Should the world keep track of host and symbiont phylogenies? (0 for no, 1 for yes)
+set NUM_PHYLO_BINS 5              # How many bins should organisms be sepeated into if phylogeny is on?
+set NO_MUT_UPDATES 0              # How many updates should be run after the end of UPDATES with all mutation turned off?
+set PHAGE_EXCLUDE 0               # Do symbionts have a decreasing chance of getting into the host the more symbionts are already infecting it? (0 for no, 1 for yes)
+set OUSTING 1                     # Should ousting (incoming symbiont kills and replaces existing symbiont) be turned on? (0 for no, 1 for yes)
+set FILE_PATH                     # Output file path
+set FILE_NAME _MOI0.0             # Root output file name
+set DOMINANT_COUNT 10             # Number of dominant hosts to select
+
+### MUTATION ###
+# Mutation
+
+set MUTATION_SIZE 0.00033      # Standard deviation of the distribution to mutate by
+set HOST_MUTATION_SIZE -1      # Standard deviation of the distribution to mutate by for hosts, if -1 MUTATION_SIZE used
+set MUTATION_RATE 1            # Value 0 to 1 of probability of mutation
+set HOST_MUTATION_RATE -1      # Value 0 to 1 of probability of mutation for hosts, if -1 MUTATION_RATE used
+set MUTATE_LYSIS_CHANCE 0      # Should the chance of lysis mutate? 0 for no, 1 for yes
+set MUTATE_INDUCTION_CHANCE 0  # Should the chance of Induction mutate? 0 for no, 1 for yes
+set MUTATE_INC_VAL 0           # Whether the incorporation vals mutate or not, 0 or 1
+set EFFICIENCY_MUT_RATE -1     # The overall mutation rate of the efficiency trait in symbionts, -1 makes it same as mutation rate as determined by transmission mode
+set INT_VAL_MUT_RATE -1        # The overall mutation rate of the interaction value trait in symbionts, -1 makes it same as mutation rate as determined by tranmission mode
+set HORIZ_MUTATION_SIZE -1     # Standard deviation of the distribution to mutate by for horizontal transmission, if -1 MUTATION_SIZE used
+set HORIZ_MUTATION_RATE -1     # Value 0 to 1 of probability of mutation for horizontal transmission, if -1 MUTATION_RATE used
+
+### ECTOSYMBIOSIS ###
+# Settings for ectosymbiosis and free-living symbionts
+
+set FREE_LIVING_SYMS 0         # Are symbionts able to live outside of the host?
+set MOVE_FREE_SYMS 0           # Should the free living syms move around in the world? 0 for no, 1 for yes
+set ECTOSYMBIOSIS 0            # Do free-living syms and parallel hosts interact? (0 for no, 1 for yes)
+set ECTOSYMBIOTIC_IMMUNITY 0   # Does a hosted sym confer immunity to ectosymbiosis? (0 for no, 1 for yes)
+set FREE_SYM_RES_DISTRIBUTE 0  # Number of resources to give to each free-living symbiont each update if they are available
+set FREE_SYM_REPRO_RES -1      # How many resources required for free living symbiont reproduction. If -1, use the horizontal transmission required point value.
+
+### SGP ###
+# Complex Genomes Settings
+
+set CYCLES_PER_UPDATE 4    # Number of CPU cycles that organisms run every update
+set THREAD_COUNT 1         # Number of threads used to process organisms in parallel
+set TASK_TYPE 1            # 1 for NOT + repro starting genome, 0 for repro starting program
+set DONATION_STEAL_INST 0  # 1 if you want donate and steal instructions in the instruction set, 0 if not
+set RANDOM_IO_INPUT 1      # 1 to give organisms random input when they IO, 0 to give them only ones
+set ORGANISM_TYPE 1        # What sgp organisms should population the world? (0 for default SGP, 1 for Health organisms, 2 for stress organisms)
+set VT_TASK_MATCH 1        # Should task matching be required for vertical transmission? (0 for no, 1 for yes)
+set TRACK_PARENT_TASKS 1   # Should parental task completion data be used for reproductive task matching (instead of the individual's task completion data?) (0 for no, 1 for yes
+
+### STRESS ###
+# Stress Settings
+
+set STRESS_TYPE 1                 # What kind of stress symbionts should be incorporated in stressful environments? (0 for mutualists, 1 for parasites, 2 for neutrals
+set EXTINCTION_FREQUENCY 2000     # How often should extinction events occur (in updates)?
+set PARASITE_DEATH_CHANCE 0.5     # What death chance does a parasite confer?
+set MUTUALIST_DEATH_CHANCE 0.125  # What death chance does a mutualist confer?
+set BASE_DEATH_CHANCE 0.25        # What death chance does a host have in the absence of symbionts?
+set CPU_TRANSFER_CHANCE 0.8       # What is the chance for cycles to be stolen/donated?
+set ONLY_FIRST_TASK_CREDIT 1      # Should symbionts only get credit for their first task
+
+Update: 0
+Update: 1000
+Update: 2000
+Update: 3000
+Update: 4000
+Update: 5000
+Update: 6000
+Update: 7000
+Update: 8000
+Update: 9000
+Update: 10000
+Update: 11000
+Update: 12000
+Update: 13000
+Update: 14000
+Update: 15000
+Update: 16000
+Update: 17000
+Update: 18000
+Update: 19000
+Update: 20000
+Update: 21000
+Update: 22000
+Update: 23000
+Update: 24000
+Update: 25000
+Update: 26000
+Update: 27000
+Update: 28000
+Update: 29000
+Update: 30000
+Update: 31000
+Update: 32000
+Update: 33000
+Update: 34000
+Update: 35000
+Update: 36000
+Update: 37000
+Update: 38000
+Update: 39000
+Update: 40000
+Update: 41000
+Update: 42000
+Update: 43000
+Update: 44000
+Update: 45000
+Update: 46000
+Update: 47000
+Update: 48000
+Update: 49000
+Update: 50000
+Update: 51000
+Update: 52000
+Update: 53000
+Update: 54000
+Update: 55000
+Update: 56000
+Update: 57000
+Update: 58000
+Update: 59000
+Update: 60000
+Update: 61000
+Update: 62000
+Update: 63000
+Update: 64000
+Update: 65000
+Update: 66000
+Update: 67000
+Update: 68000
+Update: 69000
+Update: 70000
+Update: 71000
+Update: 72000
+Update: 73000
+Update: 74000
+Update: 75000
+Update: 76000
+Update: 77000
+Update: 78000
+Update: 79000
+Update: 80000
+Update: 81000
+Update: 82000
+Update: 83000
+Update: 84000
+Update: 85000
+Update: 86000
+Update: 87000
+Update: 88000
+Update: 89000
+Update: 90000
+Update: 91000
+Update: 92000
+Update: 93000
+Update: 94000
+Update: 95000
+Update: 96000
+Update: 97000
+Update: 98000
+Update: 99000
+Update: 100000
+Update: 101000
+Update: 102000
+Update: 103000
+Update: 104000
+Update: 105000
+Update: 106000
+Update: 107000
+Update: 108000
+Update: 109000
+Update: 110000
+Update: 111000
+Update: 112000
+Update: 113000
+Update: 114000
+Update: 115000
+Update: 116000
+Update: 117000
+Update: 118000
+Update: 119000
+Update: 120000
+Update: 121000
+Update: 122000
+Update: 123000
+Update: 124000
+Update: 125000
+Update: 126000
+Update: 127000
+Update: 128000
+Update: 129000
+Update: 130000
+Update: 131000
+Update: 132000
+Update: 133000
+Update: 134000
+Update: 135000
+Update: 136000
+Update: 137000
+Update: 138000
+Update: 139000
+Update: 140000
+Update: 141000
+Update: 142000
+Update: 143000
+Update: 144000
+Update: 145000
+Update: 146000
+Update: 147000
+Update: 148000
+Update: 149000
+Update: 150000
+Update: 151000
+Update: 152000
+Update: 153000
+Update: 154000
+Update: 155000
+Update: 156000
+Update: 157000
+Update: 158000
+Update: 159000
+Update: 160000
+Update: 161000
+Update: 162000
+Update: 163000
+Update: 164000
+Update: 165000
+Update: 166000
+Update: 167000
+Update: 168000
+Update: 169000
+Update: 170000
+Update: 171000
+Update: 172000
+Update: 173000
+Update: 174000
+Update: 175000
+Update: 176000
+Update: 177000
+Update: 178000
+Update: 179000
+Update: 180000
+Update: 181000
+Update: 182000
+Update: 183000
+Update: 184000
+Update: 185000
+Update: 186000
+Update: 187000
+Update: 188000
+Update: 189000
+Update: 190000
+Update: 191000
+Update: 192000
+Update: 193000
+Update: 194000
+Update: 195000
+Update: 196000
+Update: 197000
+Update: 198000
+Update: 199000
+Update: 200000
+Update: 201000
+Update: 202000
+Update: 203000
+Update: 204000
+Update: 205000
+Update: 206000
+Update: 207000
+Update: 208000
+Update: 209000
+Update: 210000
+Update: 211000
+Update: 212000
+Update: 213000
+Update: 214000
+Update: 215000
+Update: 216000
+Update: 217000
+Update: 218000
+Update: 219000
+Update: 220000
+Update: 221000
+Update: 222000
+Update: 223000
+Update: 224000
+Update: 225000
+Update: 226000
+Update: 227000
+Update: 228000
+Update: 229000
+Update: 230000
+Update: 231000
+Update: 232000
+Update: 233000
+Update: 234000
+Update: 235000
+Update: 236000
+Update: 237000
+Update: 238000
+Update: 239000
+Update: 240000
+Update: 241000
+Update: 242000
+Update: 243000
+Update: 244000
+Update: 245000
+Update: 246000
+Update: 247000
+Update: 248000
+Update: 249000
+Update: 250000
+Update: 251000
+Update: 252000
+Update: 253000
+Update: 254000
+Update: 255000
+Update: 256000
+Update: 257000
+Update: 258000
+Update: 259000
+Update: 260000
+Update: 261000
+Update: 262000
+Update: 263000
+Update: 264000
+Update: 265000
+Update: 266000
+Update: 267000
+Update: 268000
+Update: 269000
+Update: 270000
+Update: 271000
+Update: 272000
+Update: 273000
+Update: 274000
+Update: 275000
+Update: 276000
+Update: 277000
+Update: 278000
+Update: 279000
+Update: 280000
+Update: 281000
+Update: 282000
+Update: 283000
+Update: 284000
+Update: 285000
+Update: 286000
+Update: 287000
+Update: 288000
+Update: 289000
+Update: 290000
+Update: 291000
+Update: 292000
+Update: 293000
+Update: 294000
+Update: 295000
+Update: 296000
+Update: 297000
+Update: 298000
+Update: 299000
+Update: 300000
+Update: 301000
+Update: 302000
+Update: 303000
+Update: 304000
+Update: 305000
+Update: 306000
+Update: 307000
+Update: 308000
+Update: 309000
+Update: 310000
+Update: 311000
+Update: 312000
+Update: 313000
+Update: 314000
+Update: 315000
+Update: 316000
+Update: 317000
+Update: 318000
+Update: 319000
+Update: 320000
+Update: 321000
+Update: 322000
+Update: 323000
+Update: 324000
+Update: 325000
+Update: 326000
+Update: 327000
+Update: 328000
+Update: 329000
+Update: 330000
+Update: 331000
+Update: 332000
+Update: 333000
+Update: 334000
+Update: 335000
+Update: 336000
+Update: 337000
+Update: 338000
+Update: 339000
+Update: 340000
+Update: 341000
+Update: 342000
+Update: 343000
+Update: 344000
+Update: 345000
+Update: 346000
+Update: 347000
+Update: 348000
+Update: 349000
+Update: 350000
+Update: 351000
+Update: 352000
+Update: 353000
+Update: 354000
+Update: 355000
+Update: 356000
+Update: 357000
+Update: 358000
+Update: 359000
+Update: 360000
+Update: 361000
+Update: 362000
+Update: 363000
+Update: 364000
+Update: 365000
+Update: 366000
+Update: 367000
+Update: 368000
+Update: 369000
+Update: 370000
+Update: 371000
+Update: 372000
+Update: 373000
+Update: 374000
+Update: 375000
+Update: 376000
+Update: 377000
+Update: 378000
+Update: 379000
+Update: 380000
+Update: 381000
+Update: 382000
+Update: 383000
+Update: 384000
+Update: 385000
+Update: 386000
+Update: 387000
+Update: 388000
+Update: 389000
+Update: 390000
+Update: 391000
+Update: 392000
+Update: 393000
+Update: 394000
+Update: 395000
+Update: 396000
+Update: 397000
+Update: 398000
+Update: 399000
+Update: 400000
+Update: 401000
+Update: 402000
+Update: 403000
+Update: 404000
+Update: 405000
+Update: 406000
+Update: 407000
+Update: 408000
+Update: 409000
+Update: 410000
+Update: 411000
+Update: 412000
+Update: 413000
+Update: 414000
+Update: 415000
+Update: 416000
+Update: 417000
+Update: 418000
+Update: 419000
+Update: 420000
+Update: 421000
+Update: 422000
+Update: 423000
+Update: 424000
+Update: 425000
+Update: 426000
+Update: 427000
+Update: 428000
+Update: 429000
+Update: 430000
+Update: 431000
+Update: 432000
+Update: 433000
+Update: 434000
+Update: 435000
+Update: 436000
+Update: 437000
+Update: 438000
+Update: 439000
+Update: 440000
+Update: 441000
+Update: 442000
+Update: 443000
+Update: 444000
+Update: 445000
+Update: 446000
+Update: 447000
+Update: 448000
+Update: 449000
+Update: 450000
+Update: 451000
+Update: 452000
+Update: 453000
+Update: 454000
+Update: 455000
+Update: 456000
+Update: 457000
+Update: 458000
+Update: 459000
+Update: 460000
+Update: 461000
+Update: 462000
+Update: 463000
+Update: 464000
+Update: 465000
+Update: 466000
+Update: 467000
+Update: 468000
+Update: 469000
+Update: 470000
+Update: 471000
+Update: 472000
+Update: 473000
+Update: 474000
+Update: 475000
+Update: 476000
+Update: 477000
+Update: 478000
+Update: 479000
+Update: 480000
+Update: 481000
+Update: 482000
+Update: 483000
+Update: 484000
+Update: 485000
+Update: 486000
+Update: 487000
+Update: 488000
+Update: 489000
+Update: 490000
+Update: 491000
+Update: 492000
+Update: 493000
+Update: 494000
+Update: 495000
+Update: 496000
+Update: 497000
+Update: 498000
+Update: 499000
+Update: 500000
+Update: 501000
+Update: 502000
+Update: 503000
+Update: 504000
+Update: 505000
+Update: 506000
+Update: 507000
+Update: 508000
+Update: 509000
+Update: 510000
+Update: 511000
+Update: 512000
+Update: 513000
+Update: 514000
+Update: 515000
+Update: 516000
+Update: 517000
+Update: 518000
+Update: 519000
+Update: 520000
+Update: 521000
+Update: 522000
+Update: 523000
+Update: 524000
+Update: 525000
+Update: 526000
+Update: 527000
+Update: 528000
+Update: 529000
+Update: 530000
+Update: 531000
+Update: 532000
+Update: 533000
+Update: 534000
+Update: 535000
+Update: 536000
+Update: 537000
+Update: 538000
+Update: 539000
+Update: 540000
+Update: 541000
+Update: 542000
+Update: 543000
+Update: 544000
+Update: 545000
+Update: 546000
+Update: 547000
+Update: 548000
+Update: 549000
