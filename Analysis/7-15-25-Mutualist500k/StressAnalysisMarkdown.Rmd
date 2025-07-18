@@ -1,0 +1,360 @@
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ggplot2)
+
+library(viridis)
+
+library(Hmisc)
+
+library(reshape2) 
+
+library(reshape) 
+
+library(tidyverse)
+
+```
+
+# Theme, guides, facet funtion
+
+```{r}
+
+standard_theme <- ggplot2::theme(panel.background = element_rect(fill='white', colour='black')) + 
+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+
+  theme(legend.key = element_rect(color = "transparent"))  + 
+
+  theme(panel.spacing=unit(0,"lines"),
+
+        strip.background=element_rect(color="grey30", fill="grey90"),
+
+        axis.text.x = element_text(angle = 60, vjust = 0.2, hjust=0.2))
+
+  
+
+standard_guides <-guides(fill="none",color=guide_legend(override.aes=list(fill=NA))) 
+
+standard_facet <- facet_wrap(~treatment)
+
+seed_facet <- facet_wrap(~seed)
+
+box_facet <- facet_wrap(~task, scales = "free_y")
+
+        
+
+standard_visuals <- list(standard_theme, standard_guides, standard_facet)
+
+seed_visuals <- list(standard_theme, standard_guides, seed_facet)
+
+box_visuals <- list(standard_theme, standard_guides, box_facet)
+
+```
+
+# Read data
+
+```{r}
+
+folder <- ""
+
+```
+
+```{r}
+
+counts_df <- read.csv(paste0(folder,"org_counts.dat"),h=T)
+
+counts_df$seed <- as.factor(counts_df$seed)
+
+counts_df$treatment <- counts_df$sym_type
+
+if("treatment" %in% colnames(counts_df)){
+
+  counts_df$treatment <- ifelse(counts_df$treatment == 0, "Mutualist", counts_df$treatment)
+
+  counts_df$treatment <- ifelse(counts_df$treatment == 1, "Parasite", counts_df$treatment)
+
+  counts_df$treatment <- ifelse(counts_df$treatment == 2, "Neutral", counts_df$treatment)
+
+  counts_df$treatment <- ifelse(counts_df$treatment == 3, "No Symbionts", counts_df$treatment)
+
+}
+
+```
+
+```{r}
+
+tasks_df <- read.csv(paste0(folder,"task_counts.dat"),h=T)
+
+tasks_df$seed <- as.factor(tasks_df$seed)
+
+tasks_df$treatment <- tasks_df$sym_type
+
+if("treatment" %in% colnames(tasks_df)){
+
+  tasks_df$treatment <- ifelse(tasks_df$treatment == 0, "No Symbionts", tasks_df$treatment)
+
+  tasks_df$treatment <- ifelse(tasks_df$treatment == 1, "Mutualists", tasks_df$treatment)
+}
+
+```
+
+# Organism counts
+
+```{r}
+
+ggplot(subset(counts_df, update %% 5000 == 0),aes(x=update)) + 
+
+  stat_summary(aes(y=count,fill="Hosts",color="Hosts"),
+
+               fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) +
+
+  stat_summary(aes(y=hosted_syms,fill="Symbionts",color="Syms"),
+
+               fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) +
+
+  ylab("Organism count") + xlab("Update") +
+
+  scale_colour_manual(name="Organism", values=plasma(3)) + 
+
+  scale_fill_manual(values=plasma(3)) + 
+
+  standard_visuals
+
+ 
+
+```
+
+# Task Counts
+
+```{r}
+
+task_plotter <- function(data_frame, weigh_by, ylab, exl_not=F){
+
+  colors <- turbo(10)
+
+  if(exl_not){
+
+    colors <- colors[2:10]
+
+    data_frame <- subset(data_frame, variable != "host_task_NOT" & variable != "sym_task_NOT")
+
+  }
+
+  plot <- ggplot(data_frame,aes(x=update))  
+
+  plot <- plot + stat_summary(aes(y=value/weigh_by, color=variable, fill=variable),
+
+                                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) 
+
+  
+
+  plot + ylab(ylab) + xlab("Update") +
+
+    standard_visuals +  
+
+    scale_colour_manual(name="Task type", values=colors) + 
+
+    scale_fill_manual(values=colors) + 
+
+    theme(axis.text.x = element_text(angle = 60, vjust = 0.2, hjust=0.2)) 
+
+}
+
+not_plotter <- function(data_frame, weigh_by, ylab){
+
+  colors <- turbo(10)
+
+  colors <- colors[1]
+
+  data_frame <- subset(data_frame, variable == "host_task_NOT" | variable == "sym_task_NOT")
+
+  
+
+  plot <- ggplot(data_frame,aes(x=update))  
+
+  plot <- plot + stat_summary(aes(y=value/weigh_by, color=variable, fill=variable),
+
+                                fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE) 
+
+  
+
+  plot + ylab(ylab) + xlab("Update") +
+
+    standard_visuals +  
+
+    scale_colour_manual(name="Task type", values=colors) + 
+
+    scale_fill_manual(values=colors) + 
+
+    theme(axis.text.x = element_text(angle = 60, vjust = 0.2, hjust=0.2)) 
+
+}
+
+```
+
+```{r}
+
+molten_tasks <- melt(tasks_df, id=c("seed","sym_type","update","treatment"))
+
+molten_tasks$host_task <- grepl("host",molten_tasks$variable, fixed=TRUE)
+
+molten_per_tasks <- subset(molten_tasks, update %% 2000 != 0)
+
+small_per_count <- subset(counts_df, update %% 2000 != 0)
+
+molten_tasks <- subset(molten_tasks, update %% 5000 == 0)
+
+small_counts <- subset(counts_df, update %% 5000 == 0)
+
+```
+
+```{r}
+
+task_plotter(subset(molten_tasks, host_task), 1, "Host task count")
+
+task_plotter(subset(molten_tasks, host_task), 1, "Host task count",T)
+
+task_plotter(subset(molten_per_tasks, host_task), small_per_count$count, "Host task count / Host count")
+
+task_plotter(subset(molten_per_tasks, host_task), small_per_count$count, "Host task count / Host count",T)
+
+task_plotter(subset(molten_tasks, host_task==F), 1, "Symbiont task count")
+
+task_plotter(subset(molten_tasks, host_task==F), 1, "Symbiont task count",T)
+
+task_plotter(subset(molten_per_tasks, host_task==F), small_per_count$count, "Symbiont task count / Symbiont count")
+
+task_plotter(subset(molten_per_tasks, host_task==F), small_per_count$count, "Symbiont task count / Symbiont count",T)
+
+```
+
+```{r}
+
+single_task_plotter <- function(type_sym, task_name){
+
+  sym <- tolower(type_sym)
+
+  task_name <- toupper(task_name)
+
+  variable_name <- paste0("\\b",sym, "_task_",task_name,"\\b")
+
+  task_df <- subset(molten_tasks, grepl(variable_name, molten_tasks$variable, perl=TRUE))
+
+  
+
+  if(task_name == "NOT"){colour <-1}
+
+  else if(task_name == "NAND"){colour <-2}
+
+  else if(task_name == "AND"){colour <-3}
+
+  else if(task_name == "ORN"){colour <-4}
+
+  else if(task_name == "OR"){colour <-5}
+
+  else if(task_name == "ANDN"){colour <-6}
+
+  else if(task_name == "NOR"){colour <-7}
+
+  else if(task_name == "XOR"){colour <-8}
+
+  else if(task_name == "EQU"){colour <-9}
+
+  ggplot(task_df, aes(x=update, y=value)) + geom_line(color="black", aes(group=seed), alpha=0.7) + 
+
+    stat_summary(color=turbo(10)[colour], fill=turbo(10)[colour], 
+
+  fun.data="mean_cl_boot", geom=c("smooth"), se=TRUE, na.rm = T) + 
+
+  xlab("Update") + ylab(paste(str_to_title(type_sym),task_name,"task count")) + standard_visuals
+
+}
+
+```
+
+```{r}
+
+single_task_plotter("Host", "NOT")
+
+single_task_plotter("Host", "NAND")
+
+single_task_plotter("Host", "ORN")
+
+single_task_plotter("SYM", "NOT")
+
+single_task_plotter("SYM", "NAND")
+
+single_task_plotter("SYM", "ORN")
+
+```
+
+```{r}
+
+seed_plotter <- function(task, type){
+
+  task <- toupper(task)
+
+  task_name <- paste0("_task_",task,"\\b")
+
+  host_type <- str_to_title(type)
+
+  seeds_df <- molten_tasks
+
+  
+
+  seeds_df$wanted_task <-grepl(paste0("host",task_name) ,seeds_df$variable, perl = TRUE) + 
+
+    grepl(paste0("sym",task_name) ,seeds_df$variable, perl = TRUE)
+
+  seeds_df <- subset(seeds_df, update%%2000 != 0)
+
+  
+
+  seeds_df$type <- seeds_df$host_task
+
+  if("type" %in% colnames(seeds_df)){
+
+    seeds_df$type <- ifelse(seeds_df$type == TRUE, "Hosts", "Symbionts")
+
+  }
+
+  ggplot(subset(seeds_df, wanted_task == T & treatment == host_type), aes(x=update, y=value)) +
+
+    geom_line(aes(color=type)) + scale_color_discrete(name = "Organism") +
+
+    seed_visuals + ylab(paste(host_type,task,"Task Counts")) + xlab("Updates")
+
+}
+
+```
+
+```{r}
+
+seed_plotter("NAND", "Mutualist")
+
+seed_plotter("NAND", "Parasite")
+
+```
+
+```{r}
+
+#Change to last update
+
+#Instead of geom_line, must be geom_boxplot???
+
+#facet wrapping by task, having nine plots with four boxes
+
+#free y axis
+
+box_df <- subset(molten_tasks, update == max(update) & host_task == TRUE)
+
+box_df[c("type_sym","task")] <- str_split_fixed(box_df$variable, "_task_", 2)
+
+ggplot(box_df, aes(x=treatment,y=value)) + 
+
+  geom_boxplot() + box_visuals + 
+
+  geom_point(aes(color=treatment), alpha = 0.2, position = position_jitterdodge()) 
+
+```
