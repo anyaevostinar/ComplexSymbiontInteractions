@@ -1,7 +1,7 @@
 import os.path
 import gzip
 
-folder = '../../Data/7-18-25-ParasitesFirstTaskOff/'
+folder = '../../Data/7-21-25-NutrientParasitesTest/'
 
 treatment_postfixes = ["MOI0.0", "MOI1.0"]
 partners = ["Host", "Sym"]
