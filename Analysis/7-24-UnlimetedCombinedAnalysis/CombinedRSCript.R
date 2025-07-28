@@ -9,6 +9,7 @@ library(scales)
 
 muta_data <- read.table("../7-19-25-MutualistUnlimited0.65/munged_basic.dat", h=T)
 muta_data2<- read.table("../7-19-25-MutualistUnlimited0.65/munged_basic2.dat", h=T)
+muta_data <- rbind(muta_data, muta_data2)
 muta_data[2] <- data.frame(lapply(muta_data[2], function(x) {gsub("MOI0.0", "No Symbionts", x)}))
 muta_data[2] <- data.frame(lapply(muta_data[2], function(x) {gsub("MOI1.0", "Mutualists", x)}))
 
@@ -63,9 +64,42 @@ wilcox.test(subset(host_data, treatment=="Parasites" & task=="NOR")$count, subse
 wilcox.test(subset(host_data, treatment=="Parasites" & task=="XOR")$count, subset(host_data, treatment=="No Symbionts" & task=="XOR")$count)
 wilcox.test(subset(host_data, treatment=="Parasites" & task=="EQU")$count, subset(host_data, treatment=="No Symbionts" & task=="EQU")$count)
 
-
-
-#median(subset(host_data, treatment=="Absent" & task=="NOT")$count)
+#BREAK
+#BREAK
+#BREAK
+median(subset(host_data, treatment=="Mutualists" & task=="NOT")$count)
+median(subset(host_data, treatment=="Mutualists" & task=="NAND")$count)
+median(subset(host_data, treatment=="Mutualists" & task=="AND")$count)
+median(subset(host_data, treatment=="Mutualists" & task=="ORN")$count)
+median(subset(host_data, treatment=="Mutualists" & task=="OR")$count)
+median(subset(host_data, treatment=="Mutualists" & task=="ANDN")$count)
+median(subset(host_data, treatment=="Mutualists" & task=="NOR")$count)
+median(subset(host_data, treatment=="Mutualists" & task=="XOR")$count)
+median(subset(host_data, treatment=="Mutualists" & task=="EQU")$count)
+#BREAK
+#BREAK
+#BREAK
+median(subset(host_data, treatment=="Parasites" & task=="NOT")$count)
+median(subset(host_data, treatment=="Parasites" & task=="NAND")$count)
+median(subset(host_data, treatment=="Parasites" & task=="AND")$count)
+median(subset(host_data, treatment=="Parasites" & task=="ORN")$count)
+median(subset(host_data, treatment=="Parasites" & task=="OR")$count)
+median(subset(host_data, treatment=="Parasites" & task=="ANDN")$count)
+median(subset(host_data, treatment=="Parasites" & task=="NOR")$count)
+median(subset(host_data, treatment=="Parasites" & task=="XOR")$count)
+median(subset(host_data, treatment=="Parasites" & task=="EQU")$count)
+#BREAK
+#BREAK
+#BREAK
+median(subset(host_data, treatment=="No Symbionts" & task=="NOT")$count)
+median(subset(host_data, treatment=="No Symbionts" & task=="NAND")$count)
+median(subset(host_data, treatment=="No Symbionts" & task=="AND")$count)
+median(subset(host_data, treatment=="No Symbionts" & task=="ORN")$count)
+median(subset(host_data, treatment=="No Symbionts" & task=="OR")$count)
+median(subset(host_data, treatment=="No Symbionts" & task=="ANDN")$count)
+median(subset(host_data, treatment=="No Symbionts" & task=="NOR")$count)
+median(subset(host_data, treatment=="No Symbionts" & task=="XOR")$count)
+median(subset(host_data, treatment=="No Symbionts" & task=="EQU")$count)
 #median(subset(host_data, treatment=="Present" & task=="NOT")$count)
 #wilcox.test(subset(host_data, treatment=="Absent" & task=="NAND")$count, subset(host_data, treatment=="Present" & task=="NAND")$count)
 #median(subset(host_data, treatment=="Absent" & task=="NAND")$count)
