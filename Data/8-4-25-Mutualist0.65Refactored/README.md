@@ -1,0 +1,1 @@
+This is a large 500000 experiment that was run for 30 seeds to test the effect of mutualists on the evolutionary complexity of their host's when they had a 65% chance to donate CPU cycles. This symbulation sgp is from a refactor of the task system and is on commit https://github.com/anyaevostinar/SymbulationEmp/commit/f20a4adbf639c6d79c5253514c5b207f188a413b. 
