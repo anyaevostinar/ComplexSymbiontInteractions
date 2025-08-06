@@ -1,7 +1,7 @@
 import os.path
 import gzip
 
-folder = '../../Data/ 8-5-25-ControlMutualist/'
+folder = '../../Data/8-5-25-ControlMutualist/'
 
 treatment_postfixes = ["MOI0.0"]
 partners = ["Host", "Sym"]
